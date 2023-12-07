@@ -1,0 +1,44 @@
+
+Here are the corresponding MongoDB queries for your questions:
+
+Find all the information about each product
+
+
+code1
+db.products.find({})
+Find the product price which is between 400 to 800
+
+code2
+db.products.find({ price: { $gte: 400, $lte: 800 } })
+Find the product price which is not between 400 to 600
+
+code3
+db.products.find({ price: { $not: { $gte: 400, $lte: 600 } } })
+List the four products which are greater than 500 in price
+
+code4
+db.products.find({ price: { $gt: 500 } }).limit(4)
+Find the product name and product material of each product
+
+code5
+db.products.find({}, { name: 1, material: 1, _id: 0 })
+Find the product with a row id of 10
+
+code6
+db.products.find({ _id: 10 })
+Find only the product name and product material
+
+code7
+db.products.find({}, { name: 1, material: 1, _id: 0 })
+Find all products which contain the value 'soft' in product material
+
+code8
+db.products.find({ material: { $regex: /soft/i } })
+Find products which contain product color 'indigo' and product price 492.00
+
+code9
+db.products.find({ color: 'indigo', price: 492.00 })
+Delete the products which have the same product price value
+
+ code10
+db.products.deleteMany({ price: { $eq: <price_value> } }, { keepOne: true })
